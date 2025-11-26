@@ -1,24 +1,7 @@
-import { useEffect } from 'react';
-import { useGetWorkoutInDateQuery } from '../../api/workoutApi';
 import type { workoutInDateProps } from '../../Types/workout.types';
 import LoadingItem from '../LoadingItem/LoadingItem'
-import { useNavigate } from 'react-router';
-import { isUnauthorizedError } from '../../Utils/401errorUtils';
 
-export default function WorkoutInDate({ date, setShowPage }:workoutInDateProps) {
-
-    const navigate = useNavigate()
-
- const { data, error, isLoading } = useGetWorkoutInDateQuery(date, {
-  refetchOnMountOrArgChange: true,
-  skip: !date,
- })
-
- useEffect(() => {
-    if (isUnauthorizedError(error)) {
-      navigate('/login');
-    }
-  }, [error]);
+export default function WorkoutInDate({ date, data, error, isLoading, setShowPage }:workoutInDateProps) {
 
   return (
     <>

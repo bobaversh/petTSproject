@@ -1,4 +1,6 @@
+import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import type { useStateFn } from "./calendar.types";
+import type { SerializedError } from "@reduxjs/toolkit";
 
 interface Exercise {
     id: string;
@@ -19,4 +21,8 @@ export  interface WorkoutResponse {
 export interface workoutInDateProps {
     date: string
     setShowPage: useStateFn<string>
+    data: WorkoutResponse[] | undefined
+    isLoading: boolean
+    error: FetchBaseQueryError | SerializedError | undefined;
+    
   }
