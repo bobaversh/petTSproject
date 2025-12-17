@@ -41,6 +41,9 @@ export const validationRules = {
       required: "Подтверждение пароля обязательно",
       validate: (value: string, formValues: RegisterRequest) => 
         value === formValues.password || "Пароли не совпадают"
+    },
+    fingerprint:{
+
     }
   };
 
@@ -49,5 +52,6 @@ export const validationRules = {
     lastName: "Введите фамилию", 
     email: "Введите почту",
     password: "Введите пароль",
-    confirmPassword: "Подтвердите пароль"
+    confirmPassword: "Подтвердите пароль",
+    fingerprint:""
   };

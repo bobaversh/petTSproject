@@ -1,2 +1,35 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: "SairaBold";
+    src: url('./Fonts/saira-bold.woff') format("woff");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "SairaMedium";
+    src: url('./Fonts/saira-medium.woff') format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "SairaExtraLight";
+    src: url('./Fonts/saira-extralight.woff') format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+:root {
+  --color-main-theme: rgb(63, 53, 130);
+  --bg-color-main: #1F1F1F;
+  --bg-color-second: #2c2c2b
+
+}
+
+
+body {
+    background-color:#1F1F1F;
+}
+
+*{
+  box-sizing: border-box;
+}

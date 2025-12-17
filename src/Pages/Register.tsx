@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import type { RegisterRequest } from '../Types/register.types';
 import InputRegister from '../Components/InputRegister/InputRegister.tsx';
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useRegisterMutation } from '../api/authApi.ts';
 import { formRegister } from '../Utils/formRegister.ts';
 import ErrorItem from '../Components/ErrorItem/ErrorItem.tsx';
@@ -38,10 +38,21 @@ const Register = () => {
   };
 
   return (
-    <div className="p-10 w-full max-w-md mx-auto">
-      <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
-        Регистрация
-      </h1>
+    <div className="p-10 mt-10 w-full max-w-md mx-auto">
+      <h2 className="text-3xl text-center text-white font-extrabold">
+            Создайте аккаунт
+          </h2>
+
+          <p className="mt-2 text-center text-sm text-[#fff8] px-8 mb-10">
+            Уже есть аккаунт?
+            <Link
+              to= {'/login'}
+              className="font-medium active:scale-105 duration-300 cursor-pointer ml-2 text-purple-500"
+            >
+              Войдите
+            </Link>
+          </p>
+
       
       <form 
         className="grid grid-cols-1 gap-4" 

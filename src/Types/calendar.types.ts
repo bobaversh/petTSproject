@@ -16,10 +16,16 @@ export interface CalendarDay {
 
 export interface CalendarItemProps {
     day: dayItem;
-    setActiveDay: (date: string) => void;
-    activeDay: string;
 }
 
 export interface CalendarProps {
     setSelectDate: useStateFn<string>;
+    setShowPage: useStateFn<string>
+}
+
+export interface DateState {
+    date: string;
+}
+export interface FoodDateState {
+    foodDate: string;
 }

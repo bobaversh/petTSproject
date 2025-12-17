@@ -1,16 +1,21 @@
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import type { useStateFn } from "./calendar.types";
 import type { SerializedError } from "@reduxjs/toolkit";
 
 interface Exercise {
     id: string;
     name: string;
     number: string;
-    sets: any[]; 
+    sets: Sets[]; 
   }
+
+interface Sets {
+  weight: string
+  reps: string
+}
   
 export  interface WorkoutResponse {
     id: string;
+    name: string
     user_id: string;
     template_id: string;
     date: string;
@@ -18,11 +23,42 @@ export  interface WorkoutResponse {
     created_at: string;
   }
 
-export interface workoutInDateProps {
+export interface workoutProps {
     date: string
-    setShowPage: useStateFn<string>
     data: WorkoutResponse[] | undefined
     isLoading: boolean
     error: FetchBaseQueryError | SerializedError | undefined;
-    
   }
+
+  export interface backButtonProps {
+    page: string
+  }
+
+  export interface templatePostProps {
+    isPosting: boolean
+    postTemplate: (value:templatePost) => void
+  }
+
+  export interface templatePost {
+    name: string
+    exercises: Exercise[]
+  }
+
+  export interface showPage {
+    page: string
+  }
+
+  export interface requestWorkout {
+    templateId: string
+    date: string
+    name: string
+  }
+  export interface WorkoutId {
+    workoutId: string;
+}
+
+export interface workoutProcessProps {
+  data: WorkoutResponse | undefined
+  isLoading: boolean
+  error: FetchBaseQueryError | SerializedError | undefined;
+}

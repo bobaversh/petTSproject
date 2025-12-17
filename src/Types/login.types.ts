@@ -3,7 +3,7 @@ import type { UseFormRegister } from "react-hook-form";
 export interface LoginRequest {
     email: string
     password: string
-    fingerprint: string
+    fingerprint?: string
 }
 
 export interface LoginResponse {
