@@ -7,12 +7,12 @@ const BackButton = ({ page }: backButtonProps) => {
 
   return (
     <button
-      className="mt-5 ml-5 text-#fff hover:scale-105 duration-200"
+      className="mt-5 ml-5 text-#fff hover:scale-110 duration-200"
       onClick={() => dispatch(setPage(page))}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
+        width="30"
         height="24"
         viewBox="0 0 24 24"
         fill="none"

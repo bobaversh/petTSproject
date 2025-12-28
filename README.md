@@ -29,6 +29,7 @@ Cтили - Tailwind CSS
 │   │   └── workoutApi.ts
 │   ├── Components/        # Переиспользуемые React-компоненты
 │   │   ├── BackButton/
+│   │   ├── BottomBar/
 │   │   ├── Calendar/
 │   │   ├── CalendarItem/
 │   │   ├── CreateTemplate/
@@ -48,6 +49,8 @@ Cтили - Tailwind CSS
 │   ├── Pages/             # Компоненты страниц приложения
 │   │   ├── Food.tsx
 │   │   ├── Home.tsx
+│   │   ├── Page404
+│   │   ├── TrainingProcess.tsx
 │   │   ├── Login.tsx
 │   │   ├── Register.tsx
 │   │   └── Training.tsx

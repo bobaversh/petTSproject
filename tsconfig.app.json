@@ -25,5 +25,5 @@
     "noUncheckedSideEffectImports": true,
     
   },
-  "include": ["src"]
+  "include": ["src", "src/store/slice/showPageSlice.ts"]
 }

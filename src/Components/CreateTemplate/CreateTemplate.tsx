@@ -11,9 +11,8 @@ import { setPage } from "../../store/slice/showPage";
 
 const generateId = (): string => Math.random().toString(36).substr(2, 9);
 
-const CreateTemplate = ({postTemplate, isPosting}: templatePostProps) => {
-
-  const dispatch = useAppDispatch()
+const CreateTemplate = ({ postTemplate, isPosting }: templatePostProps) => {
+  const dispatch = useAppDispatch();
 
   const [template, setTemplate] = useState({
     name: "",
@@ -89,30 +88,33 @@ const CreateTemplate = ({postTemplate, isPosting}: templatePostProps) => {
   };
 
   const handlePostTemplate = async (): Promise<void> => {
-    postTemplate(template)
-    dispatch(setPage('workoutInDate'));
+    postTemplate(template);
+    dispatch(setPage("workoutInDate"));
   };
 
   return (
     <div>
-      <BackButton page={'template'}/>
+      <BackButton page={"template"} />
 
       <div className="flex justify-center mt-5 p-2">
         <div className="w-full">
           <input
-            id = {'nameOfTraining'}
-            className="w-full p-4 mb-7 text-lg rounded-xl bg-transparent font-bold text-white placeholder-#fff8 border-2 border-white focus:outline-none duration-500 focus:shadow-purple-500 focus:shadow-md focus:border-purple-600"
+            id={"nameOfTraining"}
+            className="w-full p-4 mb-7 text-lg rounded-xl bg-transparent font-bold text-white placeholder-#fff8 border-2 border-white focus:outline-none duration-500  focus:shadow-md focus:border-(--color-main-theme)"
             onChange={handleChangeNameOfTheTemplate}
             value={template.name}
             placeholder="Введите название тренировки"
           />
 
           {template.exercises.map((exercise, index) => (
-            <SwipeToDelete onDelete={() => removeExercise(exercise.id)} key={exercise.id}>
+            <SwipeToDelete
+              onDelete={() => removeExercise(exercise.id)}
+              key={exercise.id}
+            >
               <div className="flex justify-start items-start rounded-xl bg-transparent">
                 <input
-                  id={index+'f'}
-                  className="w-12 h-12 mr-3 text-center rounded-lg bg-transparent focus:border-purple-600 text-white placeholder-#fff8 border focus:outline-none duration-500"
+                  id={index + "f"}
+                  className="w-12 h-12 mr-3 text-center rounded-lg bg-transparent focus:border-(--color-main-theme) text-white placeholder-#fff8 border focus:outline-none duration-500"
                   placeholder="№"
                   value={exercise.number}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -120,8 +122,8 @@ const CreateTemplate = ({postTemplate, isPosting}: templatePostProps) => {
                   }
                 />
                 <input
-                  id={index + 's'}
-                  className="w-full p-3 text-md rounded-3xl bg-transparent text-white placeholder-#fff8 border focus:border-purple-600 border-white focus:outline-none duration-500"
+                  id={index + "s"}
+                  className="w-full p-3 text-md rounded-3xl bg-transparent text-white placeholder-#fff8 border focus:border-(--color-main-theme) border-white focus:outline-none duration-500"
                   placeholder="Введите название упражнения"
                   value={exercise.name}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -141,7 +143,7 @@ const CreateTemplate = ({postTemplate, isPosting}: templatePostProps) => {
 
           <div className="flex justify-center mt-12">
             <button
-              className="px-8 py-3 rounded-2xl duration-300 text-white bg-purple-500 disabled:bg-gray-400 disabled:opacity-50"
+              className="px-8 py-3 rounded-2xl duration-300 text-white bg-(--color-main-theme) disabled:bg-gray-400 disabled:opacity-50"
               disabled={template.name.length === 0 && isPosting}
               onClick={handlePostTemplate}
             >

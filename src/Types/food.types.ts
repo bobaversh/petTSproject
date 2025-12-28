@@ -1,5 +1,5 @@
-import type { SerializedError } from "@reduxjs/toolkit"
-import type { FetchBaseQueryError } from "@reduxjs/toolkit/query"
+// import type { SerializedError } from "@reduxjs/toolkit"
+// import type { FetchBaseQueryError } from "@reduxjs/toolkit/query"
 
 interface foodCard {
     name: string
@@ -22,9 +22,7 @@ export interface foodDayRequest {
 }
 
 export interface foodDayRequestProps {
-    data: foodDayRequest
-    error: FetchBaseQueryError | SerializedError | undefined
-    isLoading: boolean
+    data: foodDayRequest | undefined
 }
 
 export interface cardItemProps {
@@ -33,3 +31,7 @@ export interface cardItemProps {
     flag: string
 }
 
+export interface foodRequest {
+    date: string
+    csv_url: string
+}

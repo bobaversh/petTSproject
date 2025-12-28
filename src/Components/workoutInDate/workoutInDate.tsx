@@ -5,6 +5,7 @@ import type { workoutProps } from "../../Types/workout.types";
 import LoadingItem from "../LoadingItem/LoadingItem";
 import { useDeleteWorkoutMutation } from "../../api/workoutApi";
 import { setWorkoutId } from "../../store/slice/workoutIdSlice";
+import { useNavigate } from "react-router";
 
 export default function WorkoutInDate({
   date,
@@ -12,15 +13,15 @@ export default function WorkoutInDate({
   error,
   isLoading,
 }: workoutProps) {
-
   const dispatch = useAppDispatch();
+  const navigate = useNavigate()
 
-  const [deleteWorkout] = useDeleteWorkoutMutation()
+  const [deleteWorkout] = useDeleteWorkoutMutation();
 
-  const handleClick = (id:string) => {
-    dispatch(setPage('workoutProcess'))
-    dispatch(setWorkoutId(id))
-  }
+  const handleClick = (id: string) => {
+    navigate(`/training/${id}`);
+    dispatch(setWorkoutId(id));
+  };
 
   return (
     <>
@@ -40,20 +41,21 @@ export default function WorkoutInDate({
             <div className="mt-10 grid grid-cols-1">
               {data.map((element) => {
                 return (
-                    <SwipeToDelete
-                      key={element.id}
-                      onDelete={() => deleteWorkout(element.id)}
+                  <SwipeToDelete
+                    key={element.id}
+                    onDelete={() => deleteWorkout(element.id)}
+                  >
+                    <div
+                      onClick={() => handleClick(element.id)}
+                      className="p-3 shadow-xl w-full rounded-xl bg-(--bg-color-second)"
                     >
-                      <div onClick={() => handleClick(element.id)} className="p-3 shadow-xl w-full rounded-xl bg-neutral-700">
-                        <h4 className="text-center text-white">
-                          {element.name}
-                        </h4>
-                      </div>
-                    </SwipeToDelete>
+                      <h4 className="text-center text-white">{element.name}</h4>
+                    </div>
+                  </SwipeToDelete>
                 );
               })}
               <button
-                className="text-white mt-10 p-3 mx-auto rounded-2xl w-3/5 bg-purple-500 duration-200 active:bg-purple-700"
+                className="text-white mt-10 p-3 mx-auto rounded-2xl w-3/5 bg-(--color-main-theme) duration-200 active:bg-violet-800"
                 onClick={() => dispatch(setPage("template"))}
               >
                 Добавить тренировку

@@ -7,9 +7,9 @@ const InputLogin = ({ typeField, register, error }: InputLoginProps) => {
       {error && (<p className="mb-1 text-sm text-red-600">{error}</p>)}
 
       <input
-        className={`p-3 border-2 rounded-2xl w-full focus:outline-none ${
+        className={`p-3 border-2 rounded-2xl bg-(--bg-color-second) w-full focus:outline-none ${
           error ? 'border-red-500' : 'border-fuchsia-600'
-        }`}
+        } autofill:bg-(--bg-color-second) autofill:text-white`}
         {...register(typeField, validationRules[typeField])}
         placeholder={placeholderText[typeField]}
         type={typeField.includes('password') ? 'password' : 'text'}

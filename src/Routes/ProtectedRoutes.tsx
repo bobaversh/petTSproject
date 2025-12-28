@@ -13,7 +13,7 @@ export const ProtectedRoutes: FC<ProtectedRoutesProps> = ({ children }) => {
   const {
     data: templateData,
     error: templateError,
-    isLoading,
+    isLoading: isLoading,
   } = useGetTemplateQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
@@ -30,7 +30,7 @@ export const ProtectedRoutes: FC<ProtectedRoutesProps> = ({ children }) => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="border-2 border-transparent w-10 h-10 border-b-purple-500 animate-spin rounded-full" />
+        <div className="border-2 border-transparent w-10 h-10 border-b-(--color-main-theme) animate-spin rounded-full" />
         <span className="ml-3 text-gray-600">Проверка авторизации...</span>
       </div>
     );

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const BASE_URL: string = 'https://backend-tsy9.onrender.com';
+const BASE_URL: string = 'https://workoutback.ru:8446';
 
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',

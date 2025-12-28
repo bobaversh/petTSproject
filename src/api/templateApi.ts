@@ -1,13 +1,12 @@
 import type { templatePost, WorkoutResponse } from "../Types/workout.types";
 import { apiSlice } from "./apiSlice";
 
-const url = "/templates";
 
 export const TemplateApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getTemplate: builder.query<WorkoutResponse[], void>({
       query: () => ({
-        url: url,
+        url: "/templates",
         method: "GET",
       }),
       providesTags: ['Template'], 
@@ -15,7 +14,7 @@ export const TemplateApi = apiSlice.injectEndpoints({
     
     deleteTemplate: builder.mutation<null, string>({ 
       query: (templateId) => ({ 
-        url: `${url}/${templateId}`,
+        url: `/templates/${templateId}`,
         method: "DELETE",
       }),
       invalidatesTags: ['Template'],
@@ -23,7 +22,7 @@ export const TemplateApi = apiSlice.injectEndpoints({
     
     postTemplate: builder.mutation<WorkoutResponse, templatePost>({
       query: (credentials) => ({
-        url: url,
+        url: "/templates",
         method: "POST",
         body: credentials
       }),

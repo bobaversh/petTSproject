@@ -9,8 +9,9 @@ interface Exercise {
   }
 
 interface Sets {
-  weight: string
-  reps: string
+  weight: number | string
+  reps: number | string
+  id: string
 }
   
 export  interface WorkoutResponse {
@@ -54,11 +55,20 @@ export interface workoutProps {
     name: string
   }
   export interface WorkoutId {
-    workoutId: string;
+    workoutId: string
 }
 
 export interface workoutProcessProps {
   data: WorkoutResponse | undefined
-  isLoading: boolean
-  error: FetchBaseQueryError | SerializedError | undefined;
+}
+
+export interface workoutUpdateRequest {
+  workout_id:string,
+  workout: updatedWorkout
+}
+
+export interface updatedWorkout {
+  exercises: Exercise[]
+  name: string
+  date: string
 }

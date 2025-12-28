@@ -1,36 +1,59 @@
-import type { requestWorkout, WorkoutResponse } from "../Types/workout.types";
+import type { requestWorkout, WorkoutResponse, workoutUpdateRequest } from "../Types/workout.types";
 import { apiSlice } from "./apiSlice";
 
-const url = "https://backend-tsy9.onrender.com/workouts";
 
 export const workoutApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getWorkoutInDate: builder.query<WorkoutResponse[], string>({
-      query: (date) => `${url}?date=${date}`,
-      providesTags: ["Workout"],
+      query: (date) => `/workouts?date=${date}`,
+      providesTags: (result) => {
+        if (result) {
+          return [
+            ...result.map(({ id }) => ({ type: 'Workout' as const, id })),
+            { type: 'Workout' as const, id: 'LIST' },
+          ];
+        }
+        return [{ type: 'Workout' as const, id: 'LIST' }];
+      },
     }),
+    
+    getWorkout: builder.query<WorkoutResponse, string>({
+      query: (workoutId) => `/workouts/${workoutId}`,
+      providesTags: (result, _, id) => 
+        result ? [{ type: 'Workout' as const, id }] : [],
+    }),
+    
+    updateWorkout: builder.mutation<null, workoutUpdateRequest>({
+      query: ({workout, workout_id}) => ({
+        url: `/workouts/${workout_id}`,
+        method: "PUT",
+        body: workout,
+      }),
+
+      invalidatesTags: (_, __, arg) => [
+        { type: 'Workout', id: arg.workout_id }
+      ],
+    }),
+    
     createWorkout: builder.mutation<WorkoutResponse, requestWorkout>({
       query: ({ date, templateId, name }) => ({
-        url: `${url}`,
+        url: '/workouts',
         method: "POST",
         body: { date: date, template_id: templateId, name: name },
       }),
-      invalidatesTags: ["Workout"],
+      invalidatesTags: [{ type: 'Workout', id: 'LIST' }],
     }),
+    
     deleteWorkout: builder.mutation<null, string>({
       query: (workoutId) => ({
-        url: `${url}/${workoutId}`,
+        url: `/workouts/${workoutId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Workout"],
+      invalidatesTags: (_, __, workoutId) => [
+        { type: 'Workout', id: workoutId },
+        { type: 'Workout', id: 'LIST' }
+      ],
     }),
-    getWorkout: builder.query<WorkoutResponse, string>({
-      query: (workoutId) => ({
-        url: `${url+'/'+workoutId}`,
-        method: 'GET',
-        providesTags: ["Workout"],
-      })
-    })
   }),
 });
 
@@ -39,4 +62,5 @@ export const {
   useGetWorkoutInDateQuery,
   useCreateWorkoutMutation,
   useDeleteWorkoutMutation,
+  useUpdateWorkoutMutation
 } = workoutApi;
